@@ -1,0 +1,21 @@
+# vAI 官网爬虫规则
+# https://vai.xmzf.space/
+
+User-agent: *
+Allow: /
+
+# 不需要索引的路径（暂无，预留）
+# Disallow: /admin/
+
+# 显式允许常见图片/资源爬取
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
+# Sitemap 位置
+Sitemap: https://vai.xmzf.space/sitemap.xml

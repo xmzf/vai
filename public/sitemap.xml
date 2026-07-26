@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://vai.xmzf.space/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://vai.xmzf.space/logo.jpg</image:loc>
+      <image:title>vAI — XMZF Studio 旗下的 AI 产品工作室</image:title>
+      <image:caption>vAI logo</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://vai.xmzf.space/clerkbox-icon.png</image:loc>
+      <image:title>ClerkBox — AI Agent 桌面工作台</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://vai.xmzf.space/zylo-icon.svg</image:loc>
+      <image:title>Zylo — 基于 Qwen3 微调的实验性 LLM</image:title>
+    </image:image>
+  </url>
+</urlset>

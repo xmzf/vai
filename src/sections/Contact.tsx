@@ -55,11 +55,11 @@ export function Contact() {
             </p>
 
             <a
-              href="mailto:xmzfstudio@outlook.com"
+              href="mailto:vai@xmzf.space"
               className="contact-reveal mt-8 inline-flex items-center gap-3 font-mono text-lg text-bone transition-colors hover:text-acid md:text-2xl"
             >
               <Mail size={24} />
-              xmzfstudio@outlook.com
+              vai@xmzf.space
               <ArrowUpRight size={20} />
             </a>
           </div>

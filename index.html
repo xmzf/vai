@@ -2,10 +2,113 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- 图标 -->
+    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+    <link rel="apple-touch-icon" href="/logo.jpg" />
+    <link rel="mask-icon" href="/favicon.svg" color="#CCFF00" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vAI — AI 产品工作室</title>
-    <meta name="description" content="vAI 是 XMZF Studio 旗下的 AI 产品工作室，由年轻的开发者组成，打造实用有趣的 AI 应用。" />
+    <meta name="theme-color" content="#0A0A0A" />
+
+    <!-- 主关键词：vAI / XMZF Studio / AI 产品工作室 / ClerkBox / Zylo / Qwen3 微调 -->
+    <title>vAI — XMZF Studio 旗下的 AI 产品工作室 | ClerkBox · Zylo</title>
+    <meta
+      name="description"
+      content="vAI 是 XMZF Studio 旗下的 AI 产品工作室，由年轻的开发者组成，打造实用的 AI 产品。目前重点项目：ClerkBox（本地运行的 AI Agent 桌面工作台）与 Zylo（基于 Qwen3 微调的实验性 LLM）。"
+    />
+    <meta
+      name="keywords"
+      content="vAI, XMZF Studio, XMZF, AI 产品工作室, AI Agent, ClerkBox, Zylo, Zylo Z1.3, Qwen3, Qwen3 微调, LLM, 大语言模型, 本地 AI, 桌面 AI 工作台"
+    />
+    <meta name="author" content="XMZF Studio" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://vai.xmzf.space/" />
+
+    <!-- Open Graph：微信/微博/Telegram/LinkedIn 等分享卡片 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="vAI" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:url" content="https://vai.xmzf.space/" />
+    <meta property="og:title" content="vAI — XMZF Studio 旗下的 AI 产品工作室" />
+    <meta
+      property="og:description"
+      content="由年轻开发者组成的 AI 产品工作室。在打造 ClerkBox（本地 AI Agent 桌面工作台）与 Zylo（基于 Qwen3 微调的实验性 LLM）。"
+    />
+    <meta property="og:image" content="https://vai.xmzf.space/logo.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="vAI — XMZF Studio 旗下的 AI 产品工作室" />
+    <meta
+      name="twitter:description"
+      content="由年轻开发者组成的 AI 产品工作室。在打造 ClerkBox 与 Zylo。"
+    />
+    <meta name="twitter:image" content="https://vai.xmzf.space/logo.jpg" />
+
+    <!-- 字体预连接：加快首屏 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- 结构化数据：Organization（vAI 工作室 + 母组织 XMZF）-->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "vAI",
+        "alternateName": "vAI Studio",
+        "url": "https://vai.xmzf.space/",
+        "logo": "https://vai.xmzf.space/logo.jpg",
+        "description": "XMZF Studio 旗下的 AI 产品工作室，由年轻的开发者组成，打造实用的 AI 产品。",
+        "email": "vai@xmzf.space",
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "XMZF Studio",
+          "url": "https://xmzf.space"
+        },
+        "sameAs": [
+          "https://github.com/XMZF-vAI",
+          "https://xmzf.space"
+        ]
+      }
+    </script>
+
+    <!-- 结构化数据：ClerkBox 作为 SoftwareApplication（产品）-->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "ClerkBox",
+        "applicationCategory": "AI Agent Desktop Application",
+        "operatingSystem": "Cross-platform",
+        "url": "https://clerkbox.xmzf.space",
+        "downloadUrl": "https://github.com/XMZF-vAI/clerkbox",
+        "publisher": {
+          "@type": "Organization",
+          "name": "vAI",
+          "url": "https://vai.xmzf.space/"
+        },
+        "description": "把 AI 工程师装进桌面的单一 Agent 工作台。多模型即插即用、ReAct 工具循环、子 Agent 编排、Skills 技能市场、长期记忆与 VIBE 沉浸模式，全部本地运行，数据不出本机。",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        }
+      }
+    </script>
+
+    <!-- 结构化数据：Website（带潜在搜索 action）-->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "vAI",
+        "url": "https://vai.xmzf.space/",
+        "inLanguage": "zh-CN"
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

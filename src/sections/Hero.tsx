@@ -109,6 +109,10 @@ interface DragState {
   rotY: number;
 }
 
+// 初始斜角：让立方体一角对着用户，能看到三个面
+const INIT_ROT_X = -0.45;
+const INIT_ROT_Y = -0.6;
+
 // Canvas 内部的立方体组件（可以使用 useFrame）
 function CubeMesh({
   dragState,
@@ -126,9 +130,9 @@ function CubeMesh({
     if (!groupRef.current) return;
 
     if (!dragState.current.isDragging && !reduced) {
-      // 自动缓慢旋转
-      groupRef.current.rotation.y += delta * 0.3;
-      groupRef.current.rotation.x += delta * 0.08;
+      // 自动缓慢旋转（在初始斜角基础上累加）
+      groupRef.current.rotation.y += delta * 0.25;
+      groupRef.current.rotation.x = INIT_ROT_X + Math.sin(state.clock.elapsedTime * 0.3) * 0.15;
     } else {
       // 拖拽时同步外部旋转值
       groupRef.current.rotation.x = dragState.current.rotX;
@@ -143,16 +147,21 @@ function CubeMesh({
   });
 
   return (
-    <group ref={groupRef}>
-      <mesh ref={meshRef} material={materials}>
-        <boxGeometry args={[2.4, 2.4, 2.4]} />
-      </mesh>
-      {/* 边缘线框 */}
-      <lineSegments>
-        <edgesGeometry args={[new THREE.BoxGeometry(2.42, 2.42, 2.42)]} />
-        <lineBasicMaterial color="#CCFF00" linewidth={2} />
-      </lineSegments>
-    </group>
+    <group ref={groupRef} rotation={[INIT_ROT_X, INIT_ROT_Y, 0]}>
+          <mesh ref={meshRef} material={materials} castShadow receiveShadow>
+            <boxGeometry args={[2.8, 2.8, 2.8]} />
+          </mesh>
+          {/* 主边缘线框：略大于立方体，强调边缘高光 */}
+          <lineSegments>
+            <edgesGeometry args={[new THREE.BoxGeometry(2.82, 2.82, 2.82)]} />
+            <lineBasicMaterial color="#CCFF00" linewidth={3} />
+          </lineSegments>
+          {/* 外层发光线框 */}
+          <lineSegments>
+            <edgesGeometry args={[new THREE.BoxGeometry(3.05, 3.05, 3.05)]} />
+            <lineBasicMaterial color="#0055FF" transparent opacity={0.35} linewidth={1} />
+          </lineSegments>
+        </group>
   );
 }
 
@@ -161,17 +170,20 @@ function LogoCube({ reduced }: { reduced: boolean }) {
     isDragging: false,
     lastX: 0,
     lastY: 0,
-    rotX: 0,
-    rotY: 0,
+    rotX: INIT_ROT_X,
+    rotY: INIT_ROT_Y,
   });
 
-  // 生成六个面的材质
+  // 生成六个面的材质：用 Standard 材质 + 适度金属/粗糙，让光照产生明显高光与明暗
   const faceMaterials = FACE_CONFIGS.map((cfg) => {
     const texture = createFaceTexture(cfg.text, cfg.bg, cfg.fg, cfg.accent);
     return new THREE.MeshStandardMaterial({
       map: texture,
-      roughness: 0.4,
-      metalness: 0.6,
+      roughness: 0.35,
+      metalness: 0.55,
+      emissive: new THREE.Color(cfg.accent),
+      emissiveIntensity: 0.06,
+      emissiveMap: texture,
     });
   });
 
@@ -207,13 +219,42 @@ function LogoCube({ reduced }: { reduced: boolean }) {
       onPointerLeave={handlePointerUp}
     >
       <Canvas
-        camera={{ position: [0, 0, 5], fov: 45 }}
-        gl={{ antialias: true, alpha: true }}
+        shadows
+        camera={{ position: [3.2, 2.2, 5.5], fov: 38 }}
+        gl={{ antialias: true, alpha: true, toneMappingExposure: 1.1 }}
         dpr={Math.min(window.devicePixelRatio, 2)}
       >
-        <ambientLight intensity={0.6} />
-        <directionalLight position={[5, 5, 5]} intensity={1.2} castShadow />
-        <pointLight position={[-5, -5, -5]} intensity={0.4} color="#CCFF00" />
+        {/* 三点布光：弱环境光保留明暗对比 */}
+        <ambientLight intensity={0.18} />
+        {/* 主光：从右上前方打下来，照亮顶面与右面，产生高光 */}
+        <directionalLight
+          position={[6, 8, 5]}
+          intensity={2.4}
+          color="#F4F1EA"
+          castShadow
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
+          shadow-camera-near={0.5}
+          shadow-camera-far={30}
+          shadow-camera-left={-6}
+          shadow-camera-right={6}
+          shadow-camera-top={6}
+          shadow-camera-bottom={-6}
+          shadow-bias={-0.0005}
+        />
+        {/* 边缘光（轮廓光）：从左后侧打过来，勾勒立方体轮廓 */}
+        <directionalLight position={[-5, 3, -4]} intensity={1.2} color="#0055FF" />
+        {/* 补光：底部偏冷光，让暗面不至于死黑 */}
+        <pointLight position={[0, -4, 3]} intensity={0.6} color="#CCFF00" distance={15} />
+        {/* 接收阴影的地面 */}
+        <mesh
+          rotation={[-Math.PI / 2, 0, 0]}
+          position={[0, -2.2, 0]}
+          receiveShadow
+        >
+          <planeGeometry args={[20, 20]} />
+          <shadowMaterial transparent opacity={0.45} />
+        </mesh>
         <CubeMesh dragState={dragState} reduced={reduced} materials={faceMaterials} />
       </Canvas>
     </div>
@@ -293,8 +334,13 @@ export function Hero() {
           content: "";
           position: absolute;
           inset: -20%;
-          background: radial-gradient(circle, rgba(204,255,0,0.15) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(204,255,0,0.22) 0%, rgba(0,85,255,0.08) 40%, transparent 72%);
           pointer-events: none;
+        }
+
+        .hero-deco {
+          font-family: "Space Grotesk", "Inter", "Noto Sans SC", system-ui, sans-serif;
+          letter-spacing: -0.03em;
         }
       `}</style>
 
@@ -309,6 +355,7 @@ export function Hero() {
             </div>
 
             <div className="relative">
+              <p className="hero-deco mb-5 max-w-3xl font-sans text-3xl font-black uppercase leading-[0.9] tracking-tight text-acid sm:text-4xl md:text-5xl lg:text-6xl">YOUNG DEVELOPERS BUILDING USEFUL AI PRODUCTS UNDER XMZF STUDIO.</p>
               <GlitchText
                 text="vAI"
                 as="h1"
@@ -319,7 +366,7 @@ export function Hero() {
               />
             </div>
 
-            <div className="mt-6 max-w-xl">
+            <div className="mt-2 max-w-xl">
               <Typewriter
                 text="我们是一群年轻的开发者，在 XMZF Studio 旗下打造实用的 AI 产品。"
                 className="font-mono text-base text-steel md:text-lg"
@@ -344,7 +391,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="cube-container order-1 flex h-[280px] w-full justify-center sm:h-[360px] lg:order-2 lg:h-[460px] lg:w-auto">
+          <div className="cube-container order-1 flex h-[320px] w-full justify-center bg-void-1/50 sm:h-[400px] lg:order-2 lg:h-[520px] lg:w-auto">
             {reduced ? (
               <div className="flex h-64 w-64 items-center justify-center overflow-hidden border-[3px] border-bone md:h-80 md:w-80">
                 <img

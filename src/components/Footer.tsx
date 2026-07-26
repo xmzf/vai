@@ -24,10 +24,10 @@ export function Footer() {
           </div>
           <div className="flex flex-col gap-2 font-mono text-sm text-steel md:text-right">
             <a
-              href="mailto:xmzfstudio@outlook.com"
+              href="mailto:vai@xmzf.space"
               className="transition-colors hover:text-acid"
             >
-              xmzfstudio@outlook.com
+              vai@xmzf.space
             </a>
             <a
               href="https://github.com/XMZF-vAI"
