@@ -6,9 +6,7 @@ import { Menu, X } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
-  { label: "宣言", href: "#manifesto" },
-  { label: "作品", href: "#works" },
-  { label: "服务", href: "#services" },
+  { label: "项目", href: "#works" },
   { label: "联系", href: "#contact" },
 ];
 

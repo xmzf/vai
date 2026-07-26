@@ -85,7 +85,7 @@ export function Works() {
             <p className="font-mono text-sm uppercase tracking-widest text-acid">
               / PROJECTS
             </p>
-            <h2 className="mt-2 font-display text-display-lg uppercase text-bone">
+            <h2 className="mt-2 font-display text-display-lg uppercase leading-none text-bone">
               项目
             </h2>
           </div>

@@ -8,7 +8,7 @@ export function Footer() {
           <div>
             <p className="font-display text-4xl text-bone">vAI</p>
             <p className="mt-2 font-mono text-sm text-steel">
-              GENERATIVE INTELLIGENCE STUDIO
+              AI PRODUCT STUDIO
             </p>
             <p className="mt-1 font-mono text-sm text-steel">
               A STUDIO OF{" "}
@@ -24,10 +24,10 @@ export function Footer() {
           </div>
           <div className="flex flex-col gap-2 font-mono text-sm text-steel md:text-right">
             <a
-              href="mailto:hello@vai.studio"
+              href="mailto:xmzfstudio@outlook.com"
               className="transition-colors hover:text-acid"
             >
-              hello@vai.studio
+              xmzfstudio@outlook.com
             </a>
             <a
               href="https://github.com/XMZF-vAI"
