@@ -355,7 +355,7 @@ export function Hero() {
             </div>
 
             <div className="relative">
-              <p className="hero-deco mb-5 max-w-3xl font-sans text-3xl font-black uppercase leading-[0.9] tracking-tight text-acid sm:text-4xl md:text-5xl lg:text-6xl">YOUNG DEVELOPERS BUILDING USEFUL AI PRODUCTS UNDER XMZF STUDIO.</p>
+              <p className="hero-deco mb-5 max-w-3xl font-sans text-3xl font-black uppercase leading-[0.9] tracking-tight text-acid sm:text-4xl md:text-5xl lg:text-6xl">YOUNG DEVS BUILDING USEFUL AI.</p>
               <GlitchText
                 text="vAI"
                 as="h1"
