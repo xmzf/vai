@@ -8,6 +8,10 @@ export default defineConfig({
     sourcemap: false,
     chunkSizeWarningLimit: 1200,
     rollupOptions: {
+      input: {
+        main: 'index.html',
+        en: 'index-en.html',
+      },
       output: {
         manualChunks: {
           'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
