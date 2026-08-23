@@ -111,9 +111,12 @@
     .project::after { content:""; position:absolute; width:260px; height:260px; right:-75px; bottom:-110px; border-radius:50%; background:var(--blue-pale); pointer-events:none; }
     .project.featured { min-height:520px; background:var(--ink); color:var(--surface); border-color:var(--ink); }
     .project.featured::after { width:380px; height:380px; right:-100px; bottom:-170px; background:rgba(49,94,255,.26); }
-    .project-top { position:relative; z-index:1; display:flex; justify-content:space-between; color:var(--muted); font:10px var(--mono); }
+    .project-top { position:relative; z-index:1; display:flex; justify-content:space-between; align-items:center; color:var(--muted); font:10px var(--mono); }
     .project.featured .project-top { color:rgba(248,250,252,.55); }
-    .project h3 { position:relative; z-index:1; max-width:480px; margin:100px 0 14px; font-size:clamp(48px,6vw,87px); line-height:.8; letter-spacing:-.1em; font-weight:650; }
+    .project-logo { position:relative; z-index:1; width:52px; height:52px; border-radius:14px; overflow:hidden; background:var(--canvas-2); display:block; }
+    .project-logo img { width:100%; height:100%; object-fit:cover; display:block; }
+    .project.featured .project-logo { background:rgba(255,255,255,.08); }
+    .project h3 { position:relative; z-index:1; max-width:480px; margin:24px 0 14px; font-size:clamp(44px,5.6vw,80px); line-height:.85; letter-spacing:-.09em; font-weight:650; }
     .project.featured h3 span { color:#7692ff; }
     .project p { position:relative; z-index:1; max-width:400px; margin:0; color:var(--muted); font-size:16px; line-height:1.4; }
     .project.featured p { color:rgba(248,250,252,.67); }
@@ -182,7 +185,7 @@
       .project-side { margin-top:16px; }
       .project-side .project { min-height:220px; }
       .project h3 { margin-top:84px; font-size:65px; }
-      .project-side .project h3 { margin-top:46px; font-size:46px; }
+      .project-side .project h3 { margin-top:18px; font-size:clamp(30px,3.6vw,48px); }
       .research h2 { font-size:100px; }
       .research-lede { font-size:20px; margin-bottom:58px; }
       .research-link strong { font-size:18px; }
@@ -233,7 +236,7 @@
 
     <section class="shell section" id="projects">
       <div class="section-head reveal"><span class="accent-label">Projects</span><h2>Made for<br><span>the work.</span></h2><p>两个方向。一个面向当下的 AI 工作流，一个继续追问语言模型还能怎样工作。</p></div>
-      <div class="projects"><article class="project featured reveal"><div class="project-top"><span>DESKTOP AGENT</span><span>CLERKBOX</span></div><h3>AI that<br><span>works locally.</span></h3><p>把多模型、工具调用、子 Agent、Skills 和长期记忆放进一个本地工作台。</p><a class="project-link" href="https://github.com/XMZF-vAI/clerkbox" target="_blank" rel="noreferrer">查看 ClerkBox <i>↗</i></a></article><div class="project-side"><article class="project reveal"><div class="project-top"><span>RESEARCH WORK</span><span>ZYLO</span></div><h3>Models<br>with intent.</h3><p>围绕 LLM 的实验性研究作品，探索更自然、更有用的模型行为。</p><a class="project-link" href="https://vai.xmzf.space" target="_blank" rel="noreferrer">了解 Zylo <i>↗</i></a></article><article class="project reveal"><div class="project-top"><span>OPEN SOURCE</span><span>XMZF-vAI</span></div><h3>Build in<br>public.</h3><p>在 GitHub 上查看我们正在构建、维护和学习的东西。</p><a class="project-link" href="https://github.com/XMZF-vAI" target="_blank" rel="noreferrer">访问组织 <i>↗</i></a></article></div></div>
+      <div class="projects"><article class="project featured reveal"><div class="project-top"><a class="project-logo" href="https://github.com/XMZF-vAI/clerkbox" target="_blank" rel="noreferrer" aria-label="ClerkBox logo"><img src="assets/projects/clerkbox.png" alt="ClerkBox" /></a><span>CLERKBOX</span></div><h3>AI that<br><span>works locally.</span></h3><p>把多模型、工具调用、子 Agent、Skills 和长期记忆放进一个本地工作台。</p><a class="project-link" href="https://github.com/XMZF-vAI/clerkbox" target="_blank" rel="noreferrer">查看 ClerkBox <i>↗</i></a></article><div class="project-side"><article class="project reveal"><div class="project-top"><a class="project-logo" href="https://vai.xmzf.space" aria-label="Zylo logo"><img src="assets/projects/zylo.svg" alt="Zylo" /></a><span>ZYLO</span></div><h3>Models<br>with intent.</h3><p>围绕 LLM 的实验性研究作品，探索更自然、更有用的模型行为。</p><a class="project-link" href="https://vai.xmzf.space" target="_blank" rel="noreferrer">了解 Zylo <i>↗</i></a></article><article class="project reveal"><div class="project-top"><a class="project-logo" href="https://github.com/XMZF-vAI" target="_blank" rel="noreferrer" aria-label="XMZF-vAI logo"><img src="assets/default.jpg" alt="XMZF-vAI" /></a><span>XMZF-vAI</span></div><h3>Build in<br>public.</h3><p>在 GitHub 上查看我们正在构建、维护和学习的东西。</p><a class="project-link" href="https://github.com/XMZF-vAI" target="_blank" rel="noreferrer">访问组织 <i>↗</i></a></article></div></div>
     </section>
 
     <section class="shell section" id="research">
